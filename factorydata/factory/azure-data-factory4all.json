@@ -1,0 +1,9 @@
+{
+	"name": "azure-data-factory4all",
+	"location": "northeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "94e704f2-920a-4263-a194-76618aff04b8",
+		"tenantId": "591d49ff-4ac0-48b0-803d-e89a29f5c118"
+	}
+}
