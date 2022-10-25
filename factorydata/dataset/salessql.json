@@ -1,0 +1,131 @@
+{
+	"name": "salessql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OutputSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ORDER_UNIQUE_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ORDERNUMBER",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "QUANTITYORDERED",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRICEEACH",
+				"type": "varchar"
+			},
+			{
+				"name": "ORDERLINENUMBER",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SALES",
+				"type": "decimal",
+				"precision": 7,
+				"scale": 2
+			},
+			{
+				"name": "ORDERDATE",
+				"type": "varchar"
+			},
+			{
+				"name": "STATUS",
+				"type": "varchar"
+			},
+			{
+				"name": "QTR_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MONTH_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "YEAR_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRODUCTLINE",
+				"type": "varchar"
+			},
+			{
+				"name": "MSRP",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRODUCTCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "CUSTOMERNAME",
+				"type": "varchar"
+			},
+			{
+				"name": "PHONE",
+				"type": "varchar"
+			},
+			{
+				"name": "ADDRESSLINE1",
+				"type": "varchar"
+			},
+			{
+				"name": "ADDRESSLINE2",
+				"type": "varchar"
+			},
+			{
+				"name": "CITY",
+				"type": "varchar"
+			},
+			{
+				"name": "STATE",
+				"type": "varchar"
+			},
+			{
+				"name": "POSTALCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "COUNTRY",
+				"type": "varchar"
+			},
+			{
+				"name": "TERRITORY",
+				"type": "varchar"
+			},
+			{
+				"name": "CONTACTLASTNAME",
+				"type": "varchar"
+			},
+			{
+				"name": "CONTACTFIRSTNAME",
+				"type": "varchar"
+			},
+			{
+				"name": "DEALSIZE",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Sales"
+		}
+	}
+}
