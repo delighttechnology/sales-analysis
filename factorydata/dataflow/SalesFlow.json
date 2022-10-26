@@ -1,0 +1,115 @@
+{
+	"name": "SalesFlow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "salescsv",
+						"type": "DatasetReference"
+					},
+					"name": "Sales"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "salessql",
+						"type": "DatasetReference"
+					},
+					"name": "SalesCleansed"
+				}
+			],
+			"transformations": [
+				{
+					"name": "ChangeDate"
+				},
+				{
+					"name": "OrderDatetoDate"
+				},
+				{
+					"name": "DealSize"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ORDER_UNIQUE_ID as string,",
+				"          ORDERNUMBER as string,",
+				"          QUANTITYORDERED as string,",
+				"          PRICEEACH as string,",
+				"          ORDERLINENUMBER as string,",
+				"          SALES as double,",
+				"          ORDERDATE as string,",
+				"          STATUS as string,",
+				"          QTR_ID as string,",
+				"          MONTH_ID as string,",
+				"          YEAR_ID as string,",
+				"          PRODUCTLINE as string,",
+				"          MSRP as string,",
+				"          PRODUCTCODE as string,",
+				"          CUSTOMERNAME as string,",
+				"          PHONE as string,",
+				"          ADDRESSLINE1 as string,",
+				"          ADDRESSLINE2 as string,",
+				"          CITY as string,",
+				"          STATE as string,",
+				"          POSTALCODE as string,",
+				"          COUNTRY as string,",
+				"          TERRITORY as string,",
+				"          CONTACTLASTNAME as string,",
+				"          CONTACTFIRSTNAME as string,",
+				"          DEALSIZE as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Sales",
+				"Sales derive(ORDERDATE = replace(left(ORDERDATE,instr(ORDERDATE,' ')),'.','/')) ~> ChangeDate",
+				"ChangeDate cast(output(",
+				"          ORDERDATE as date 'MM/dd/yyyy'",
+				"     ),",
+				"     errors: true) ~> OrderDatetoDate",
+				"OrderDatetoDate aggregate(groupBy(YEAR_ID),",
+				"     SALES = sum(SALES)) ~> DealSize",
+				"OrderDatetoDate sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          ORDER_UNIQUE_ID as integer,",
+				"          ORDERNUMBER as integer,",
+				"          QUANTITYORDERED as integer,",
+				"          PRICEEACH as string,",
+				"          ORDERLINENUMBER as integer,",
+				"          SALES as decimal(7,2),",
+				"          ORDERDATE as string,",
+				"          STATUS as string,",
+				"          QTR_ID as integer,",
+				"          MONTH_ID as integer,",
+				"          YEAR_ID as integer,",
+				"          PRODUCTLINE as string,",
+				"          MSRP as integer,",
+				"          PRODUCTCODE as string,",
+				"          CUSTOMERNAME as string,",
+				"          PHONE as string,",
+				"          ADDRESSLINE1 as string,",
+				"          ADDRESSLINE2 as string,",
+				"          CITY as string,",
+				"          STATE as string,",
+				"          POSTALCODE as string,",
+				"          COUNTRY as string,",
+				"          TERRITORY as string,",
+				"          CONTACTLASTNAME as string,",
+				"          CONTACTFIRSTNAME as string,",
+				"          DEALSIZE as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SalesCleansed"
+			]
+		}
+	}
+}
