@@ -1,0 +1,21 @@
+{
+	"name": "budgetcsvAzureFiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "csvFromAzureFiles",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureFileStorageLocation",
+				"folderPath": "Budget"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
