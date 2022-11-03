@@ -1,0 +1,64 @@
+{
+	"name": "budgetsql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OutputSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstDayOfMonth",
+				"type": "date"
+			},
+			{
+				"name": "FirstDayOfMonthKey",
+				"type": "date"
+			},
+			{
+				"name": "YearMonthKey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Budget",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrencyCode",
+				"type": "varchar"
+			},
+			{
+				"name": "BudgetEUR_AVG",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BudgetEUR_BUD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CalendarYear",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MonthNumberOfYear",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Budget"
+		}
+	}
+}
